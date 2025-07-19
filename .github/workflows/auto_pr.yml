@@ -1,0 +1,24 @@
+name: Create PR from developer to main
+
+on:
+  push:
+    branches:
+      - developer
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: developer
+          title: "Auto PR: merge developer into main"
+          body: "This pull request was automatically generated."
+          draft: false

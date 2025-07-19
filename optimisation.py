@@ -2,6 +2,15 @@ import numpy as np
 from sklearn.model_selection import GridSearchCV,StratifiedKFold
 from sklearn.ensemble import RandomForestClassifier
 
+param_grid = {
+            'n_estimators': [100, 200,500],
+            'criterion': ['gini', 'entropy', 'log_loss'],
+            'max_depth': [None, 10, 20],
+            'min_samples_split': [2, 5],
+            'min_samples_leaf': [1, 2],
+            'max_features': ['sqrt', 'log2'],
+        }
+
 class Optimisation:
     def __init__(self, model, param_grid, scoring='f1') -> None:
         self.model = model
